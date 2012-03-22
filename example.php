@@ -4,6 +4,8 @@ include("Lawnchair.php");
 /*	you can choose to use sql or file as a datastore:	*/
 /*	SQL:	*/
 //	$ppl = new Lawnchair( array("name"=>"people","store"=>"sql","dbhost"=>"localhost","dbuser"=>"","dbpass"=>"","dbname"=>"") );
+/*	S3:	*/
+//	$ppl = new Lawnchair( array("name"=>"people","store"=>"s3",'awsaccesskey'=>'Your AWS Access Key','awssecretkey'=>'Your AWS Secret Key','bucketname'=>'Your Bucket Name') );
 /*	File:	*/
 $ppl = new Lawnchair( array("name"=>"people","store"=>"file") );
 
@@ -11,7 +13,6 @@ if( $ppl->count() < 1 ){
 	for($i = 0; $i <= 15000;$i++){
 		$ppl->save( array("value"=>array("name"=>$i,"age"=>($i+2),"address"=>"random street") ) );
 	}
-	
 }
 echo "<h1>List all Keys</h1>";
 if( $ppl->count() < 10 ){

@@ -28,6 +28,11 @@ class Lawnchair{
 			case "sql":
 				include_once("Lawnchair_sql.php");
 				$this->store = new Lawnchair_sql($dbhost,$dbuser,$dbpass,$dbname);
+				break;
+			case "s3":
+				include_once("Lawnchair_s3.php");
+				$this->store = new Lawnchair_s3($awsaccesskey,$awssecretkey,$bucketname);
+				break;
 			case "file":
 			default:
 				include_once("Lawnchair_file.php");
