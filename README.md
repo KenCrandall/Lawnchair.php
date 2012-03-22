@@ -10,6 +10,8 @@ I'll do more documentation as I go..
 
 This also works really nicely with underscore.php
 
+_If you use file storage, make sure the data folder is writable_
+
 Example
 --------
 
