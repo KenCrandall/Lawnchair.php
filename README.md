@@ -4,7 +4,7 @@ See http://westcoastlogic.com/lawnchair/ for the original javascript library.
 
 I mostly made this for something to try, and have tested with over 20,000 records in a table and had it work fast.
 
-You have a choice of adapters, it can store it as text files or in a mySQL database, and you can build on that.
+You have a choice of adapters, it can store it as text files on Amazon S3 or in a mySQL database, and you can build on that.
 
 I'll do more documentation as I go..
 
@@ -14,6 +14,12 @@ Example
 --------
 
 	include("Lawnchair.php");
+	/*	you can choose to use sql or file as a datastore:	*/
+	/*	SQL:	*/
+	//	$ppl = new Lawnchair( array("name"=>"people","store"=>"sql","dbhost"=>"localhost","dbuser"=>"","dbpass"=>"","dbname"=>"") );
+	/*	S3:	*/
+	//	$ppl = new Lawnchair( array("name"=>"people","store"=>"s3",'awsaccesskey'=>'Your AWS Access Key','awssecretkey'=>'Your AWS Secret Key','bucketname'=>'Your Bucket Name') );
+	/*	File:	*/
 	$ppl = new Lawnchair( array("name"=>"people","store"=>"file") );
 	if( $ppl->count() < 1 ){
 		for($i = 0; $i <= 15000;$i++){
