@@ -26,11 +26,11 @@ class Lawnchair{
 		$this->data[$name]['name'] = $name;
 		switch($store){
 			case "sql":
-				include("Lawnchair_sql.php");
+				include_once("Lawnchair_sql.php");
 				$this->store = new Lawnchair_sql($dbhost,$dbuser,$dbpass,$dbname);
 			case "file":
 			default:
-				include("Lawnchair_file.php");
+				include_once("Lawnchair_file.php");
 				$this->store = new Lawnchair_file();
 				break;
 		}
