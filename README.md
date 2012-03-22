@@ -1,4 +1,4 @@
-Lawnchair.php is a port of PHP port of Lawnchair.js
+Lawnchair.php is a PHP port of Lawnchair.js
 
 See http://westcoastlogic.com/lawnchair/ for the original javascript library.
 
