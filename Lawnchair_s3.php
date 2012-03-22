@@ -10,7 +10,7 @@ class Lawnchair_s3 extends Lawnchair_Adapter{
 	function read($file){
 		$fileName = $file.".json";
 		if ( $data = $this->s3->getObject($this->bucket, $fileName) ){
-			return $data;
+			return $data->body;
 		}else{
 			return "";
 		}
