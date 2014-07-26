@@ -2,24 +2,29 @@
 
 class Lawnchair_sql extends Lawnchair_Adapter{
 	public $dbh;
-	public function __construct($dbhost,$dbuser,$dbpass,$dbname){
-$sql = "CREATE TABLE `datastore` (
-`ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,`name` varchar(255) NOT NULL,`value` TEXT NOT NULL,`tstamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (`ID`), KEY `tstamp` (`tstamp`) 
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;";
-		$this->dbh = mysql_connect($dbhost,$dbuser,$dbpass);
-		mysql_select_db($dbname,$this->dbh);
-		mysql_query($sql,$this->dbh);	//	insert the datastore table..
+	public function __construct(){
+		$this->dbh = new PDO( 'sqlite:./data/lawnchair.sqlite' );
+		$this->dbh->exec('CREATE TABLE IF NOT EXISTS  datastore (id INTEGER PRIMARY KEY, mkey TEXT,mvalue TEXT,tstamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);');
+		if (file_exists('./data/lawnchair.sqlite')){
+#			echo 'Database and tables created.';
+		}else {
+			echo 'Database was not created. Please check to make sure this directory is writeable.';
+		}
 	}
 	public function __destruct(){
-		mysql_close($this->dbh);
+//		mysql_close($this->dbh);
 	}
 	function read($file){
-		$ret = mysql_query("SELECT * FROM datastore WHERE name='{$file}'",$this->dbh);
-		$row = mysql_fetch_assoc($row);
-		return $row['value'];		
+		$stmt = $this->dbh->prepare('SELECT mvalue FROM datastore WHERE mkey=?');
+		$stmt->execute( array($file) );
+		
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		return $result['mvalue'];
 	}
 	function write($file,$data){
-		mysql_query("DELETE FROM datastore WHERE name='{$file}'",$this->dbh);
-		mysql_query("INSERT INTO datastore SET name='{$file}',value='{$data}'",$this->dbh);
+		$this->dbh->exec("DELETE datastore WHERE mkey='{$file}';");
+		
+		$stmt = $this->dbh->prepare('INSERT INTO datastore (mkey,mvalue) VALUES (?,?)');
+		$stmt->execute( array($file,$data) );
 	}
 }

@@ -4,13 +4,13 @@ See http://westcoastlogic.com/lawnchair/ for the original javascript library.
 
 I mostly made this for something to try, and have tested with over 20,000 records in a table and had it work fast.
 
-You have a choice of adapters, it can store it as text files on Amazon S3 or in a mySQL database, and you can build on that.
+You have a choice of adapters, it can store it as text files on Amazon S3 or in a SQLite database, and you can build on that.
 
 I'll do more documentation as I go..
 
 This also works really nicely with underscore.php
 
-_If you use file storage, make sure the data folder is writable_
+_If you use file storage or SQLite, make sure the data folder is writable_
 
 Example
 --------
@@ -18,7 +18,7 @@ Example
 	include("Lawnchair.php");
 	/*	you can choose to use sql or file as a datastore:	*/
 	/*	SQL:	*/
-	//	$ppl = new Lawnchair( array("name"=>"people","store"=>"sql","dbhost"=>"localhost","dbuser"=>"","dbpass"=>"","dbname"=>"") );
+	//	$ppl = new Lawnchair( array("name"=>"people","store"=>"sql") );
 	/*	S3:	*/
 	//	$ppl = new Lawnchair( array("name"=>"people","store"=>"s3",'awsaccesskey'=>'Your AWS Access Key','awssecretkey'=>'Your AWS Secret Key','bucketname'=>'Your Bucket Name') );
 	/*	File:	*/

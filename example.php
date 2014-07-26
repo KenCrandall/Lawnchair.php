@@ -3,7 +3,7 @@ include("Lawnchair.php");
 
 /*	you can choose to use sql or file as a datastore:	*/
 /*	SQL:	*/
-//	$ppl = new Lawnchair( array("name"=>"people","store"=>"sql","dbhost"=>"localhost","dbuser"=>"","dbpass"=>"","dbname"=>"") );
+//	$ppl = new Lawnchair( array("name"=>"people","store"=>"sql") );
 /*	S3:	*/
 //	$ppl = new Lawnchair( array("name"=>"people","store"=>"s3",'awsaccesskey'=>'Your AWS Access Key','awssecretkey'=>'Your AWS Secret Key','bucketname'=>'Your Bucket Name') );
 /*	File:	*/
@@ -21,8 +21,8 @@ if( $ppl->count() < 10 ){
 	echo "<p>Too many keys to list at once.. {$ppl->count()} keys found..</p>";
 }
 
-echo "<h1>Find all people with 'a' in the name </h1>";
-$list = $ppl->find(array("field"=>"name","q"=>"a","a"=>"eq"));
+echo "<h1>Find all people with '2' in the name </h1>";
+$list = $ppl->find(array("field"=>"name","q"=>"2","a"=>"eq"));
 echo "<pre>".print_r($list,true)."</pre>";
 
 echo "<h1>List All People</h1>";

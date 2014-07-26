@@ -27,7 +27,7 @@ class Lawnchair{
 		switch($store){
 			case "sql":
 				include_once("Lawnchair_sql.php");
-				$this->store = new Lawnchair_sql($dbhost,$dbuser,$dbpass,$dbname);
+				$this->store = new Lawnchair_sql();
 				break;
 			case "s3":
 				include_once("Lawnchair_s3.php");
